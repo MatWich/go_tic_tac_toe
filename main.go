@@ -12,14 +12,35 @@ func main() {
 	b.initBoard()
 	b.print()
 	fmt.Println(player_o, player_x)
+
+
 	
 }
+
+// func getUserInput (row int, col int) []int {
+// 	fmt.Println("Pass row numer")
+// 	fmt.Scanln(&row)
+// 	fmt.Println("Pass col numer")
+// 	fmt.Scanln(&col)
+
+// 	return []int{row, col}
+// }
+
+
 
 
 type Board struct {
 	fields [9]string
 }
 
+func (b *Board) isFull() bool {
+	for index := range b.fields {
+		if b.fields[index] == " " {
+			return true
+		}
+	}
+	return true
+}
 func (b *Board) initBoard() {
 	for index := range b.fields {
 		b.fields[index]=" "

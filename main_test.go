@@ -58,3 +58,15 @@ func TestBoardInitializationAfterGame(t *testing.T) {
 		}
 	}
 }
+
+func TestBoardFull(t *testing.T) {
+	b := Board{}
+	b.initBoard()
+	for index := range b.fields {
+		b.fields[index] = "X"
+	}
+
+	if !b.isFull() {
+		t.Errorf("Board is full but isFull method thinks otherwise %v", b.fields)
+	}
+}
