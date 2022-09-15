@@ -9,27 +9,21 @@ var player_o string = "O"
 func main() {
 	fmt.Println("TIC TAC TOE")
 	b := Board{}
-	for i := range b.fields {
-		b.fields[i] = "x"
-	}
-
+	b.initBoard()
 	b.print()
-
-	b.fields[0] = player_x
-	b.fields[1] = player_x
-	b.fields[2] = player_x
-	win := b.check_win(player_x)
-	if win {
-		fmt.Printf("Player %v wins!\n", player_x)
-	} else {
-		fmt.Printf("Maybe %v will have its chance!", player_o)
-	}
+	fmt.Println(player_o, player_x)
 	
 }
 
 
 type Board struct {
 	fields [9]string
+}
+
+func (b *Board) initBoard() {
+	for index := range b.fields {
+		b.fields[index]=" "
+	}
 }
 
 func (b *Board) print() {
