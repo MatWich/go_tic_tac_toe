@@ -66,7 +66,35 @@ func TestBoardFull(t *testing.T) {
 		b.fields[index] = "X"
 	}
 
-	if !b.isFull() {
+	if b.isFull() {
 		t.Errorf("Board is full but isFull method thinks otherwise %v", b.fields)
+	}
+}
+
+func TestBoardPutSign(t *testing.T) {
+	var player_x string = "X"
+	// var player_o string = "O"
+	b := Board{}
+	b.currentPlayer = player_x
+	b.putSign(1)
+	b.putSign(2)
+
+	if player_o != b.fields[1] {
+		t.Errorf("Expected %v got %v", player_o, b.fields[1])
+	}
+
+	if player_x != b.fields[0] {
+		t.Errorf("Expected %v current %v", player_x, b.fields[0])
+	}
+}
+
+func TestBoardPutSignPlayerSwitch(t *testing.T) {
+	b := Board{}
+	var player_x string = "X"
+	b.currentPlayer = player_x
+	b.putSign(1)
+
+	if b.currentPlayer == player_x {
+		t.Errorf("After player putting sign on field there should be switch")
 	}
 }
