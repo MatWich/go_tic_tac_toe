@@ -98,3 +98,13 @@ func TestBoardPutSignPlayerSwitch(t *testing.T) {
 		t.Errorf("After player putting sign on field there should be switch")
 	}
 }
+
+func TestFieldValid(t *testing.T) {
+	b := Board{}
+	b.initBoard()
+	b.putSign(1)
+	// one less because its decreased in put sign
+	if b.isValidField(0) == true {
+		t.Errorf("After geting a mark in a field user shouldn't be able to mark the same field again")
+	}
+}

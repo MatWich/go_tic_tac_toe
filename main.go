@@ -66,6 +66,10 @@ type Board struct {
 	currentPlayer string
 }
 
+func (b *Board) isValidField(index int) bool {
+	return b.fields[index] == " "
+}
+
 func (b *Board) isFull() bool {
 	for index := range b.fields {
 		if b.fields[index] == " " {
@@ -91,7 +95,11 @@ func (b *Board) print() {
 
 func (b *Board) putSign(place int) {
 	place -= 1
-	b.fields[place] = b.currentPlayer
+	if b.isValidField(place) {
+		b.fields[place] = b.currentPlayer
+	} else {
+		return
+	}
 	if b.currentPlayer == player_x {
 		b.currentPlayer = player_o
 	} else {
